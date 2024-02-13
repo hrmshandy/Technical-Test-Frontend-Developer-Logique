@@ -1,9 +1,7 @@
+import axios from 'axios';
 import useSWR from 'swr';
 
-const fetcher = async (...args: any[]): Promise<any> => {
-  const response = await fetch(...args);
-  return response.json();
-};
+const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
 export const useFetcher = (url: string) => {
   return useSWR(url, fetcher);
